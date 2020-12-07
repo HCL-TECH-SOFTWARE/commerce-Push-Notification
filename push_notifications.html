@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Push Notification Form</title>
+  <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="./push_notifications.css" rel="stylesheet"> -->
+  <style>
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body,
+    div,
+    form,
+    input,
+    select,
+    p {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      line-height: 22px;
+    }
+
+    h1 {
+      position: absolute;
+      margin: 0;
+      font-size: 32px;
+      color: #fff;
+      z-index: 2;
+    }
+
+    h2 {
+      font-weight: 400;
+    }
+
+    .title-item {
+      width: 350px;
+    }
+
+    .notificationBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 20px;
+    }
+
+    form {
+      width: 100%;
+      padding: 20px;
+      border-radius: 6px;
+      background: #fff;
+      /* box-shadow: 0 0 20px 0 #095484; */
+    }
+
+    .banner {
+      position: relative;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .banner::after {
+      content: "";
+      background-color: rgba(65, 120, 190);
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    input,
+    select {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    input {
+      width: calc(100% - 10px);
+      padding: 5px;
+    }
+
+    select {
+      width: 100%;
+      padding: 7px 0;
+      background: transparent;
+    }
+
+    .item input:hover,
+    .item select:hover {
+      border: 1px solid transparent;
+      box-shadow: 0 0 6px 0 #095484;
+      color: #095484;
+    }
+
+    .item {
+      position: relative;
+      margin: 10px 0;
+    }
+
+    .item i {
+      right: 2%;
+      top: 30px;
+      z-index: 1;
+    }
+
+    .btn-block {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #4178BE;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0666a3;
+    }
+
+    .multiselect,
+    .multiselect1 {
+      min-width: 18em;
+      height: 15em;
+      border: solid 1px #c0c0c0;
+      overflow: auto;
+    }
+
+    .multiselect label,
+    .multiselect1 label {
+      display: block;
+    }
+
+    input[type="checkbox"] {
+      width: auto;
+      margin: 5px;
+    }
+
+    .selectOptions {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .actionsDiv {
+      display: none;
+      margin-top: 6px;
+      width: 350px;
+    }
+
+    label {
+      margin-right: 20px;
+    }
+
+    p {
+      font-size: 15px;
+    }
+
+    .error {
+      color: #ff0000;
+      margin-bottom: 10px;
+    }
+    .required {
+      color: #ff0000;
+    }
+  </style>
+</head>
+
+<body onload="getUsersDevicesValues()">
+  <div class="notificationBox">
+    <form id="sendNotificationForm">
+      <div class="banner">
+        <h1>Push Notifications Form</h1>
+      </div>
+      <div class="item">
+        <p>Title<span class="required">*</span></p>
+        <div class="title-item">
+          <input type="text" name="title" id="title" placeholder="Title" />
+        </div>
+      </div>
+
+      <div class="item">
+        <p>Description<span class="required">*</span></p>
+        <div class="desc-item">
+          <textarea name="desc" id="desc" rows="4" cols="47" placeholder="Description"></textarea>
+        </div>
+      </div>
+
+      <div class="item">
+        <p>Select Users and devices for sending Notifications</p>
+        <div class="selectOptions">
+          <p>Users<span class="required">*</span></p>
+          <div class="multiselect" id="multiselect">
+          </div>
+        </div>
+        <div class="selectOptions">
+          <p>Devices<span class="required">*</span></p>
+          <div class="multiselect1" id="multiselect1">
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <label><input type="checkbox" name="actions" value="actions" id="actions"> Do you need the click actions for the
+          Push Notification?</label>
+        <div class="actions actionsDiv">
+          <p>Enter the click action value : </p>
+          <input type="text" id="actionValue" name="actionValue" placeholder="Action URL">
+        </div>
+      </div>
+
+      <div class="btn-block">
+        <p class="error"><span id="error"></span></p>
+        <button onclick="sendNotification()">Send Notification</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <!-- <script src="./push_notifications.js"></script> -->
+  <script>
+    document.getElementById('multiselect').onclick = function () {
+      var userschkbx = document.querySelectorAll('input[name="users"]:checked');
+      var userschkbxArr = [];
+      userschkbx.forEach(function (chkbx) {
+        userschkbxArr.push(chkbx.value);
+      });
+      console.log(userschkbxArr);
+    }
+
+    document.getElementById('multiselect1').onclick = function () {
+      var devicechkbx = document.querySelectorAll('input[name="devices"]:checked');
+      var devicechkbxArr = [];
+      devicechkbx.forEach(function (chkbx) {
+        devicechkbxArr.push(chkbx.value);
+      });
+      console.log(devicechkbxArr);
+    }
+
+    $(document).ready(function () {
+      $('input[name="actions"]').click(function () {
+        var inputValue = $(this).attr("value");
+        $("." + inputValue).toggle();
+      });
+    });
+  </script>
+  <script>
+
+    function getUsersDevicesValues() {
+      fetch("http://localhost:5001/push-app-c1b75/us-central1/app/get-users")
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.data);
+          var container = document.getElementById("multiselect");
+          for (let i in data.data) {
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'users';
+            checkbox.className = 'users';
+            checkbox.value = data.data[i].userId;
+
+            var label = document.createElement('label');
+            label.appendChild(checkbox);
+            label.appendChild(document.createTextNode(data.data[i].email + "(" + data.data[i].nickName + ")"));
+            container.appendChild(label);
+          }
+        })
+        .catch(error => {
+          console.log("error : ", error);
+        });
+
+      var deviceContainer = document.getElementById("multiselect1");
+      var devices = ['Desktop', 'Mobile', 'Tablet'];
+      for (let j in devices) {
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = 'devices';
+        checkbox.className = 'devices';
+        checkbox.value = devices[j].toLowerCase();;
+
+        var label = document.createElement('label');
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(devices[j]));
+        deviceContainer.appendChild(label);
+      }
+    }
+
+    function sendNotification() {
+      document.getElementById('sendNotificationForm').onsubmit = function () {
+        var users = [];
+        var devices = [];
+
+        var userElements = document.getElementsByClassName('users');
+        for (var i = 0; userElements[i]; ++i) {
+          if (userElements[i].checked) {
+            users.push(userElements[i].value);
+          }
+        }
+
+        var deviceElements = document.getElementsByClassName('devices');
+        for (var i = 0; deviceElements[i]; ++i) {
+          if (deviceElements[i].checked) {
+            devices.push(deviceElements[i].value);
+          }
+        }
+
+        var title = document.getElementById('title').value;
+        var desc = document.getElementById('desc').value;
+
+        var actionsChkbx = "";
+        var actionURL = "";
+        if (document.querySelector('input[type=checkbox][name=actions]:checked')) {
+          actionsChkbx = document.querySelector('input[type=checkbox][name=actions]:checked').value;
+          actionURL = document.getElementById('actionValue').value;
+        }
+
+        var notificationObject = {
+          "user_ids": users,
+          "devices": devices,
+          "title": title,
+          "description": desc,
+          "click_action": actionURL
+        };
+        console.log(notificationObject);
+        
+        if((users.length == 0) || (devices.length == 0) || (title == "") || (desc == "")){
+          document.getElementById("error").innerHTML = "Please fill all the required fields.";
+        } else {
+          fetch('http://localhost:5001/push-app-c1b75/us-central1/app/send-notification', {
+            method: 'post',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(notificationObject)
+          }).then(function (response) {
+            return response.json();
+          }).then(function (data) {
+            console.log("push data---", data);
+          }).catch(function (err) {
+            console.log("error -", err);
+          });
+        }
+
+        return false;
+      };
+    }
+  </script>
+</body>
+
+</html>
