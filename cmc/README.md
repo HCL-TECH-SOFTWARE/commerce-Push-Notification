@@ -1,6 +1,6 @@
 # Push Notification Form
 
-**Requirement: **
+**Requirement:**
 
 Create a form to send Push Notification to selected users and selected devices at the same time.
 
@@ -10,7 +10,9 @@ Create a form to send Push Notification to selected users and selected devices a
 
 •	The form will be having Title and Description for the Push Notification. Multiselect list boxes for selecting users and devices to which we need to send the notification. Checkbox to select if we need to send the Action link/URL in the notification.
 
+
 **Implementation:**
+
 •	UI for sending notifications to the selected users and devices.
 
 •	Function for calling NodeJS API for getting users values from Firebase and declaring array for device types.
@@ -19,13 +21,15 @@ Create a form to send Push Notification to selected users and selected devices a
 
 •	Validation for the required fields.
 
-**Validations: **
+
+**Validations:**
 
 •	All the required fields must be filled.
 
 •	At least one user id and device type must be selected.
 
 •	Title and description must be specified.
+
 
 **Scenarios:**
 
