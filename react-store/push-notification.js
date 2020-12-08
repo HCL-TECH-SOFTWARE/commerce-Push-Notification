@@ -3,13 +3,13 @@ import notificationService from './notification.service';
 
 export const initializeFirebase = () => {
     const config = {
-        apiKey: "AIzaSyD39h-tmwhXNli5H93vQ8xZkvO8z87oYgE",
-        authDomain: "push-app-c1b75.firebaseapp.com",
-        databaseURL: "https://push-app-c1b75.firebaseio.com",
-        projectId: "push-app-c1b75",
-        storageBucket: "push-app-c1b75.appspot.com",
-        messagingSenderId: "868206520699",
-        appId: "1:868206520699:web:0af75addd78ae6abb6f5de"
+        apiKey: "AXXXXXXXXXXXXXXXXXXXXXE",
+        authDomain: "XXXX.firebaseapp.com",
+        databaseURL: "https://XXXXXXX-c1b75.firebaseio.com",
+        projectId: "XXXXXX",
+        storageBucket: "XXXXXXXXX.appspot.com",
+        messagingSenderId: "123565656565",
+        appId: "1:XXXXXXX:web:XXXXXXX"
     }
 
     firebase.initializeApp(config);
