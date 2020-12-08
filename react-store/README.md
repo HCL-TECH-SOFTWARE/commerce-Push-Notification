@@ -9,7 +9,18 @@ Scenarios:
 
 Implementation:
 
-1. Create a notification service file which have all the methods like saving the token, sending the notification.
+1. Create a notification service file which have all the methods like saving the token, sending the notification etc.
+
+
+Below are functions included in the notification service file.
+
+getUserInfoFromStore: This function returns the userinfo from the database store.
+
+saveTokenToDB: This function stores the user token into the database.
+
+Send Notification: Send Notification function is used to send the notification to a particular device, or a set of devices.
+
+
 2. Create a firebase configuration file for storing the configurations.
 
 
