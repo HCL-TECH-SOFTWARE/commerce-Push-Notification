@@ -13,7 +13,7 @@
 
 # Implementation:
 
-**Follow the Below steps to implement the push notification 
+**Follow the Below steps to implement the push notification**
 
 1. Install firebase as a npm package using below command
      `npm install firebase`
