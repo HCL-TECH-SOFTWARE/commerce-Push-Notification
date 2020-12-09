@@ -3,7 +3,9 @@
 The Proof of concept to configure the push notification in the Mangement center from where the user can write and send the message to different user's devices based on the scenerios.
 
 Scenerios like :
+
 •	Show Notification in case of cart abandonment. (Apology message with coupons)
+
 •	Send promotional message to specific users (General message like Christmas sale/Diwali sale)
 
 
