@@ -16,15 +16,23 @@ The user would be able to receive notification based on the scenerios like
     •	Send promotional message to specific users (General message like Christmas sale/Diwali sale)
 
 
-**This feature can be achieved in the below chunks**
+**The Implementation includes below Component**
 
-1. Create an account and web app on the firebase console.
+ 1. Firebase account
+ 
+     Create an account and web app on the firebase console.
+     
+ 2. React Store Changes
+ 
+     Please follow the Readme file to do changes in the React store to register it with firebase and token generation using cloud messaging and send some instant notification.
+   
+3. Add Menu in CMC
 
-2. Please follow the Readme file to do changes in the React store to register it with firebase and token generation using cloud messaging and send some instant notification.
+     Please follow the Readme file to the changes in CMC to send the offline notification to the user
 
-3. Please follow the Readme file to the changes in CMC to send the offline notification to the user
-
-4. Please follow the readme file for the REST APIs used to send notification and to save the token etc.
+4. NodeJs for REST APIs
+   
+    Please follow the readme file for the REST APIs used to send notification and to save the token etc.
       
 
 
