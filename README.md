@@ -24,15 +24,15 @@ The user would be able to receive notification based on the scenerios like
      
  2. React Store Changes
  
-     Please follow the Readme file to do changes in the React store to register it with firebase and token generation using cloud messaging and send some instant notification.
+     Please follow the Readme file placed inside react-store folder to do changes in the React store to register it with firebase and token generation using cloud messaging and send some instant notification.
    
 3. Add Menu in CMC
 
-     Please follow the Readme file to the changes in CMC to send the offline notification to the user
+     Please follow the Readme file placed inside cmc folder to the changes in CMC to send the offline notification to the user
 
 4. NodeJs for REST APIs
    
-    Please follow the readme file for the REST APIs used to send notification and to save the token etc.
+    Please follow the readme file placed inside node-app for the REST APIs used to send notification and to save the token etc.
       
 
 
