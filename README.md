@@ -1,4 +1,4 @@
-# Push_notification_v2.0_POC
+# Push_notification_POC
 
 **The Proof of concept to provide the capability of showing push notification on the React store using Firebase cloud messaging.**
 
